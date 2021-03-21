@@ -19,8 +19,8 @@
     "privacy": {
         "auth": 0,
         "unauth": 0,
-        "authRoleName": "amplify-recognize-dev-151041-authRole",
-        "unAuthRoleName": "amplify-recognize-dev-151041-unauthRole"
+        "authRoleName": "amplify-recognize-dev-13339-authRole",
+        "unAuthRoleName": "amplify-recognize-dev-13339-unauthRole"
     },
     "dependsOn": [
         {

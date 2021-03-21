@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "recognize685c06e1_identitypool_685c06e1",
+    "identityPoolName": "recognize5be4390c_identitypool_5be4390c",
     "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "recogn685c06e1",
-    "userPoolName": "recognize685c06e1_userpool_685c06e1",
+    "resourceNameTruncated": "recogn5be4390c",
+    "userPoolName": "recognize5be4390c_userpool_5be4390c",
     "autoVerifiedAttributes": [
         "phone_number"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "recogn685c06e1_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "recogn5be4390c_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "685c06e1",
-    "resourceName": "recognize685c06e1",
+    "sharedId": "5be4390c",
+    "resourceName": "recognize5be4390c",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
