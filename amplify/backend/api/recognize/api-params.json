@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/recognize",
+            "lambdaFunction": "recognize",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/recognize"
+        }
+    ],
+    "resourceName": "recognize",
+    "apiName": "recognize",
+    "functionArns": [
+        {
+            "lambdaFunction": "recognize"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-recognize-dev-151041-authRole",
+        "unAuthRoleName": "amplify-recognize-dev-151041-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "recognize",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
