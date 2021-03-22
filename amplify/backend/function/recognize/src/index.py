@@ -20,7 +20,7 @@ def handler(event, context):
         'headers': {
             'Content-Type' : 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Credentials': True,
             'Access-Control-Allow-Headers' : '*'
         }
     }
