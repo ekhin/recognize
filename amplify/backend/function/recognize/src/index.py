@@ -4,6 +4,7 @@ import boto3
 import noms
 import requests
 from requests.auth import HTTPBasicAuth
+from flask_cors import CORS
 
 def handler(event, context):
     client = boto3.client("rekognition")
