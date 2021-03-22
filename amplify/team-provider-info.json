@@ -18,7 +18,7 @@
       "function": {
         "recognize": {
           "deploymentBucketName": "amplify-recognize-dev-13339-deployment",
-          "s3Key": "amplify-builds/recognize-4175712f7a30384a4c62-build.zip"
+          "s3Key": "amplify-builds/recognize-757433414e6151636c71-build.zip"
         }
       }
     }
