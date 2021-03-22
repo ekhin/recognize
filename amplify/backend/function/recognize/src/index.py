@@ -9,8 +9,8 @@ import boto3
 def handler(event, context):
     client = boto3.client("rekognition")
     s3 = boto3.client("s3")
-    fileObj = s3.get_object(Bucket = "recognize", Key="image 5.jpg")
-    file_content = fileObj["Body"].read()
+    # fileObj = s3.get_object(Bucket = "recognize", Key="image 5.jpg")
+    # file_content = fileObj["Body"].read()
     # response = client.detect_labels(Image = {"S3Object": {"Bucket": "foodrecognition", "Name": "image 5.jpg"}}, MaxLabels=3, MinConfidence=70)
     response = client.detect_labels(Image = {"S3Object": {"Bucket": "recognize13339-dev", "Name": "public/userUpload.png"}}, MaxLabels=5, MinConfidence=70)
     # print(response)
