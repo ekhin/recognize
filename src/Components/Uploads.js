@@ -3,12 +3,23 @@ import React, { Component, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useCookie } from 'react-cookie';
 import FoodInfo from './FoodInfo';
+import Nutrient from './Nutrient';
 import {
 S3Client
 } from "@aws-sdk/client-s3";
 import { CognitoIdentityClient } from "@aws-sdk/client-cognito-identity";
 import * as AmazonCognitoIdentity from 'amazon-cognito-identity-js';
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-provider-cognito-identity";
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import { Container, Row, Col, setConfiguration  } from 'react-grid-system';
+import ClipLoader from "react-spinners/ClipLoader";
 
 import { API, Storage  } from 'aws-amplify';
 import { AWS } from 'aws-sdk';
@@ -24,31 +35,69 @@ const UserFileUpload = ({ image }) => {
       setUploadFile(reader.result);
     }.bind(this);
   return (
-    <div><img src={uploadFile} alt={image.name} /></div>);
+    <div><img style={{width:"400px", height:"300px"}} src={uploadFile} alt={image.name} /></div>);
 };
 
 const FoodName = ({foodName}) => {
   return (
     <div>
-      <p>
-        FoodName: {foodName}
-      </p>
+      <p style={{fontWeight: "bold"}}> FoodName: {foodName} </p>
+    </div>
+  )
+}
+const NutrientsList = ({nutrients}) => {
+
+  let nutrientsList = nutrients.foodNutrients;
+  setConfiguration({ defaultScreenClass: 'xxl', gridColumns: 20 });
+  return (
+    <div>
+
+    <Container fluid style={{width: "600px"}} >
+      {nutrients && <FoodName foodName={nutrients.description} /> }
+      {nutrients && nutrientsList.map(i => <NutrientFact nutrient={i} /> )}
+    </Container>
     </div>
   )
 }
 
+const NutrientFact = ({nutrient}) => {
+  let nutrientName = nutrient.nutrientName.trim();
+  // <VariableWidthGrid>{nutrientName} : {nutrient.value} {nutrient.unitName}</VariableWidthGrid>
+  return(
+    <div>
+
+        <Row className="justify-content-md-center" style={{border: "1px solid #e0e0e0"}}>
+          <Col md={10}>
+            {nutrientName}
+          </Col>
+          <Col md={4}>
+            {nutrient.value}
+          </Col>
+          <Col md={4}>
+            {nutrient.unitName}
+          </Col>
+        </Row>
+
+
+    </div>
+  )
+}
+// const override = css`
+//   display: block;
+//   margin: 0 auto;
+//   border-color: red;`;
 export default function Uploads() {
   let [file, setFile] = useState("");
-  let [foodName, setFoodName] = useState("");
-  const [recognize, setRecognize] = useState(null);
+  let [nutrient, setNutrients] = useState(null);
+  let [loading, setLoading] = useState(true);
+  let [color, setColor] = useState("#ffffff");
   const fetchRecognize = async () => {
     const apiData = await API.get('recognize', '/recognize');
-    console.log(apiData);
-    setRecognize(apiData.Labels[0].Name);
-    setFoodName(apiData.Labels[0].Name);
+    setNutrients(apiData);
   }
+
   useEffect(() => {
-    // fetchRecognize();
+    setLoading(nutrient)
   }, []);
 
 
@@ -76,13 +125,15 @@ export default function Uploads() {
   var reader = new FileReader();
   var url = reader.readAsDataURL(file);
   }
-
+  // {nutrient && nutrient.map(i => <FoodName foodName={i.description} />)}
+  // {nutrient && nutrient.map(i => <NutrientsList nutrients={i.foodNutrients}/>) }
 
   return(
     <div>
       <input type="file" onChange={handleFileUpload}/>
       {file && <UserFileUpload image={file} />}
-      {foodName && <FoodName foodName={foodName} /> }
+      {nutrient && nutrient.map(i => <NutrientsList nutrients={i}/>) }
+
 
     </div>
   )
