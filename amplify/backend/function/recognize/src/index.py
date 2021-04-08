@@ -50,8 +50,11 @@ def nutrientHelper():
                     foodNutrients['nutrientName'] = "Calories"
                 else:
                     foodNutrients['nutrientName'] = nutrient['nutrientName']
+                if nutrient['unitName'] == "KCAL":
+                    foodNutrients['unitName'] = "CAL"
+                else:
+                    foodNutrients['unitName'] = nutrient['unitName'].lower()
                 foodNutrients['value'] = nutrient['value']
-                foodNutrients['unitName'] = nutrient['unitName']
                 nutrientList.append(foodNutrients)
 
             recognizedFood['foodNutrients'] = nutrientList

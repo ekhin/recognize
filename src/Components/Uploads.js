@@ -54,8 +54,27 @@ const NutrientsList = ({nutrients}) => {
 
     <Container fluid style={{width: "600px"}} >
       {nutrients && <FoodName foodName={nutrients.description} /> }
-      {nutrients && nutrientsList.map(i => <NutrientFact nutrient={i} /> )}
+      <NutrientHeader style={{fontWeight: "bold"}} />
+      {nutrients && nutrientsList.map((i,j) => <NutrientFact nutrient={i} /> )}
     </Container>
+    </div>
+  )
+}
+
+const NutrientHeader = () => {
+  return (
+    <div style={{fontWeight: "bold"}}>
+      <Row className="justify-content-md-center" style={{border: "1px solid #e0e0e0"}}>
+        <Col md={10}>
+          Name
+        </Col>
+        <Col md={4}>
+          Amount
+        </Col>
+        <Col md={4}>
+          Unit
+        </Col>
+      </Row>
     </div>
   )
 }
